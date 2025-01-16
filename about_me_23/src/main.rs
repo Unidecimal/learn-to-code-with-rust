@@ -11,7 +11,7 @@ fn main() {
     From the Terminal, compile the project with the Cargo tool, then
     manually run the executable.  xx
 
-    From the Terminal, compile and run the project with a single 
+    From the Terminal, compile and run the project with a single
     Cargo command. xx
 
     Check your program for errors with `cargo check`. xx
@@ -26,9 +26,9 @@ fn main() {
     Replace the `println!` macro with `print!`. What happens? the lines are not separated by a newline! x
     */
 
-    /* 
-    you can do this in different ways, 
-    cargo run  which compiles and runs the program 
+    /*
+    you can do this in different ways,
+    cargo run  which compiles and runs the program
     cargo run --release which compiles and runs the program in release mode
     cargo build which compiles the program but does not run it
     cargo build --release which compiles the program in release mode but does not run it
