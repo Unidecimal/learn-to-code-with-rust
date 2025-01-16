@@ -28,11 +28,13 @@ fn main() {
 
     /*
     you can do this in different ways,
+    rustc main.rs which compiles the program
     cargo run  which compiles and runs the program
     cargo run --release which compiles and runs the program in release mode
     cargo build which compiles the program but does not run it
     cargo build --release which compiles the program in release mode but does not run it
     cargo build --debug which compiles the program in debug mode but does not run it
+    cargo clean
     cargo check which checks the program for errors but does not compile it
     cargo fmt which formats the code
      */
