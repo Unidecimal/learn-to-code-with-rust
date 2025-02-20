@@ -1,9 +1,21 @@
+const TAX_RATE: f64 = 7.25;
+const TOUCHDOWN_POINTS: i32 = 6;
+type Meters = i32; 
+
 fn main() {
     let width = get_terminal_width();
     variables(width);
     mutability(width);
     rust_error_codes_index(width);
     variable_shadowing(width);
+    variables_and_scopes(width);
+    constants(width);
+    type_aliases(width);
+    compiler_directives(width);
+
+    // PROJECT:
+    project(width);
+
 }
 
 fn get_terminal_width() -> usize {
@@ -69,6 +81,115 @@ fn variable_shadowing(width: usize) {
     println!("Grams of protein as Integer: {}", grams_of_protein);
     grams_of_protein = 120;
     println!("Grams of protein as mutated Integer: {}", grams_of_protein);
+}
+
+
+fn variables_and_scopes(width: usize) {
+    print_headline(width, "variables scope");
+    
+    // this is a practical example of a second independent variable with the same name in the nested scope.
+    let coffee_price = 10;
+    { // this a nested scope, the variable x is declared again in the inner scope.
+        let coffee_price = 20;
+        let cookie_price = 5;
+        println!("coffee_price is {coffee_price}");
+        println!("the cookie price is {cookie_price}");
+    }
+    println!("coffee_price is {coffee_price}");
+    println!("this will cause an error because the cookie_price variable is not in the scope of the outer block.")
+    // println!("the cookie price is {cookie_price}"); 
+}
+
+fn constants(width: usize) {
+    print_headline(width, "constants");
+    let income: i32 = 1_000_000;
+    println!("constants are like variables but they are immutable and cannot be changed.");
+    println!("constants have the scoope of the entire program and can thus be declared in"); 
+    println!("the file level outside of any function (eg: at the top of the file outside of main).");
+    println!("constants are declared using the const keyword instead of let.");
+    println!("constants must be annotated with a type.");
+    println!("My in come is {income} and the TAX_RATE is {TAX_RATE}");
+
+}
+
+fn type_aliases(width: usize) {
+    print_headline(width, "type aliases");
+    println!("type aliases are a way to give a different name to a type.");
+    println!("they are declared using the type keyword.");
+    println!("I declare 'type Meters = i32;' on top of the file to use it in the code.");
+    let mile_race_length: Meters = 1600;
+    let two_mile_race_length: Meters = mile_race_length * 2;
+    let marathon_length: Meters = 42_195;
+    println!("The length of a mile race is {mile_race_length} meters.");
+    println!("The length of a two mile race is {two_mile_race_length} meters.");
+    println!("The length of a marathon is {marathon_length} meters.");  
+}
+
+#[allow(unused_variables)]
+fn compiler_directives(width: usize) {
+    print_headline(width, "type aliases");
+    println!("A compiler directive is a instruction to the compiler how to parse the source code");
+    println!("add #[allow(unused_variables)] - to allow unused variables if you adding it to a function.");
+    println!("it will allow unused variables in the whole function.");
+    println!("if you look in the code in the 'compiler_directives' function, you will see that all the...");
+    println!("Unused variables are allowed. and the IDE will not show any errors.");
+    println!("If you want to allow unused variables in the whole file you can declare it at the top of the file.");
+    println!("But then you will have to add an exlamation mark to the hashtag."); 
+    println!("like this: #![allow(unused_variables)]");
+    let marathon_length: Meters = 42_195;
+    let mile_race_length: Meters = 1600;
+    let two_mile_race_length: Meters = mile_race_length * 2;
+}
+
+fn project(width: usize) {
+    /* PROJECT:   
+    Declare a `season` variable set to a string with
+    your favorite season. Provide an explicit type annotation.
+    The type of a string is a `&str`. We'll discuss what
+    the & symbol means later in the course.
+    
+    Declare a `points_scored` variable set to 28.
+    Provide an explicit type annotation. The type of
+    an integer is `i32`.
+    
+    It's time to update the team's score. Declare the
+    `points_scored` variable to be mutable. Set its
+    new value to 35.
+    
+    Declare a `TOUCHDOWN_POINTS` constant at the file
+    level set to the value 6.
+    
+    Declare a `event_time` variable set to a string of
+    "06:00".
+    
+    Use variable shadowing to redeclare `event_time` set
+    to a integer of 6.
+    
+    Use interpolation to print out all of the
+    declared variables and constants in a println! call.
+    Practice using direct interpolation {value}, sequential
+    arguments ( {} ), and numeric arguments ( {0} ).
+    
+    Declare a `favorite_beverage` variable set to a string
+    of your favorite drink. Use an underscore to silence
+    the compiler warning about the variable being unused.
+    
+    Remove the underscore. Provide a compiler directive
+    to silence the compiler warning about the variable
+    being unused.
+    */
+
+    let season: &str = "winter";
+    let points_scored: i32 = 28;
+    let mut points_scored: i32 = 35;
+    // const TOUCHDOWN_POINTS: i32 = 6; declared at the top of the file.
+    let event_time: &str = "06:00";
+    let event_time: i32 = 6;
+    println!("The season is {season}, the points scored are {points_scored}, the touchdown points are {TOUCHDOWN_POINTS}, the event time is {event_time}.");
+    println!("The season is {0}, the points scored are {1}, the touchdown points are {2}, the event time is {3}.", season, points_scored, TOUCHDOWN_POINTS, event_time);
+    let _favorite_bevarege: &str = "sara";
+    #[allow(unused_variables)]
+    let favorite_bevarege: &str = "aras";
 }
 
 
